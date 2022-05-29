@@ -7,12 +7,6 @@ import s from './modal.module.css';
 const modalRoot = document.getElementById('modal-root');
 
 const Modal = ({ children, onClose }) => {
-  useEffect(() => {
-    document.addEventListener('keydown', closeModal);
-
-    return () => document.removeEventListener('keydown', closeModal);
-  }, []);
-
   const closeModal = e => {
     if (e.code === 'Escape') {
       onClose();
@@ -22,6 +16,12 @@ const Modal = ({ children, onClose }) => {
       onClose();
     }
   };
+
+  useEffect(() => {
+    document.addEventListener('keydown', closeModal);
+
+    return () => document.removeEventListener('keydown', closeModal);
+  }, [closeModal]);
 
   return createPortal(
     <div className={s.overlay} onClick={closeModal}>
