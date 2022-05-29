@@ -27,7 +27,6 @@ const App = () => {
     if (q === '') {
       return;
     }
-
     setData(prevState => {
       return {
         ...prevState,
